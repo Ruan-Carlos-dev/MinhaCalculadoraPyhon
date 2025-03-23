@@ -7,7 +7,7 @@ def calculos():
 
     while True:
         if resultado is None:
-            print("꧁༒༻☬ད ░C░a░l░c░u░l░a░d░o░r░a░ ཌ☬༺༒꧂")
+            print("❚█══CALCULADORA══█❚")
             num1 = ler_numero("Insira um número: ")
             escolha = exibir_menu()
 

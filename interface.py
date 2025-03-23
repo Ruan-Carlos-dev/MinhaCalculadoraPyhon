@@ -1,9 +1,9 @@
 def exibir_menu():
     print("Escolha a operação que deseja realizar:")
-    print("1 - Somar (+)")
-    print("2 - Subtrair (-)")
-    print("3 - Dividir (/)")
-    print("4 - Multiplicar (*)")
+    print("1 - ＳＯＭＡＲ(+)")
+    print("2 - 𝗦𝗨𝗕𝗧𝗥𝗔𝗜𝗥(-)")
+    print("3 - 𝗗𝗜𝗩𝗜𝗗𝗜𝗥 (/)")
+    print("4 - 𝗠𝗨𝗟𝗧𝗜𝗣𝗟𝗜𝗖𝗔𝗥 (*)")
     print("0 - Sair")
     acao = input("Escolha sua ação: ")
     return acao
