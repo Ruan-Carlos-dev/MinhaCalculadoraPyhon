@@ -1,117 +1,76 @@
-import os
-
-def soma(num1, num2):
-    return num1 + num2
-
-def subtrair(num1, num2):
-    return num1 - num2
-
-
-def dividir(num1, num2):
-    return num1 / num2 if num2 != 0 else "Erro: divisão por zero"
-
-def multiplicar(num1, num2):
-    return num1 * num2
-
-def finalizar():
-    if os.name == 'nt':
-        os.system('cls')
-    elif os.name == 'posix':
-        os.system('clear')
-    print("Finalizado\n")
-
-def formatar_resultado(valor):
-    return f"{valor:.2f}".rstrip("0.")
-
-def actions():
-    print("Escolha a operação que deseja realizar:")
-    print("1 - Somar (+)")
-    print("2 - Subtrair (-)")
-    print("3 - Dividir (/)")
-    print("4 - Multiplicar (*)")
-    print("9 - Sair")
-    action = input("Escolha sua ação: ")
-    return action
-
-def itens(repost, action, action_symbol, descricao):
-    return repost == action or repost == action_symbol or repost.lower() == descricao
-
+from    operacao   import soma,subtrair,dividir,multiplicar,finalizar
+from    formatacao  import itens,formatar_resultado,ler_numero
+from    interface   import exibir_menu,exibir_menu2
+ 
 def calculos():
     resultado = None
 
     while True:
         if resultado is None:
             print("꧁༒༻☬ད ░C░a░l░c░u░l░a░d░o░r░a░ ཌ☬༺༒꧂")
-            num1 = float(input("Insira o primeiro número: "))
-            escolha = actions()
+            num1 = ler_numero("Insira um número: ")
+            escolha = exibir_menu()
 
             if itens(escolha, "1", "+", "somar"):
-                num2 = float(input("Insira o segundo número: "))
+                num2 = ler_numero ("Insira o segundo número: ")
                 resultado = soma(num1, num2)
                 print(f" {formatar_resultado(num1)} + {formatar_resultado(num2)} = {formatar_resultado(resultado)}")
 
             elif itens(escolha, "2", "-", "subtrair"):
-                num2 = float(input("Insira o segundo número: "))
+                num2 = ler_numero ("Insira o segundo número: ")
                 resultado = subtrair(num1, num2)
                 print(f" {formatar_resultado(num1)} - {formatar_resultado(num2)} = {formatar_resultado(resultado)}")
 
             elif itens(escolha, "3", "/", "dividir"):
-                num2 = float(input("Insira o segundo número: "))
+                num2 = ler_numero ("Insira o segundo númer: ")
                 resultado = dividir(num1, num2)
                 print(f" {formatar_resultado(num1)} / {formatar_resultado(num2)} = {formatar_resultado(resultado)}")
 
             elif itens(escolha, "4", "*", "multiplicar"):
-                num2 = float(input("Insira o segundo número: "))
+                num2 = ler_numero ("Insira o segundo número: ")
                 resultado = multiplicar(num1, num2)
                 print(f" {formatar_resultado(num1)} * {formatar_resultado(num2)} = {formatar_resultado(resultado)}")
 
-            elif escolha == "9" or escolha.lower() == "sair":
+            elif escolha == "0" or escolha.lower() == "sair":
                 finalizar()
-                break
-                
+                break                
             else:
                 print("Ação não reconhecida, tente novamente!")
 
-        else:
-            print("\nEscolha uma opção:")
-            print("1 - Limpar (iniciar novo cálculo)")
-            print("2 - Continuar (usar o último resultado)")
-            print("9 - Sair")
+        elif resultado != None:
+            escolha = exibir_menu2()
 
-            opcao = input("Escolha sua ação: ")
-
-            if opcao == "1" or opcao.lower()== "limpar":
+            if escolha == "1" or escolha.lower()== "limpar":
                 resultado = None
                 print("\nCalculadora reiniciada. Comece um novo cálculo.")
-            elif opcao == "2" or opcao.lower() == "continuar":
-                escolha = actions()
-
+            elif escolha == "2" or escolha.lower() == "continuar":
+                escolha = exibir_menu()
                 if itens(escolha, "1", "+", "somar"):
-                    num2 = float(input("Insira o segundo número: "))
-                    resultado = soma(resultado, num2)
-                    print(f" {formatar_resultado(resultado)} + {formatar_resultado(num2)} = {formatar_resultado(resultado)}")
+                    num2 = ler_numero ("Insira o segundo número: ")
+                    resultado2 = soma(resultado, num2)
+                    print(f" {formatar_resultado(resultado)} + {formatar_resultado(num2)} = {formatar_resultado(resultado2)}")
 
                 elif itens(escolha, "2", "-", "subtrair"):
-                    num2 = float(input("Insira o segundo número: "))
-                    resultado = subtrair(resultado, num2)
-                    print(f" {formatar_resultado(resultado)} - {formatar_resultado(num2)} = {formatar_resultado(resultado)}")
+                    num2 = ler_numero ("Insira o segundo número: ")
+                    resultado2 = subtrair(resultado, num2)
+                    print(f" {formatar_resultado(resultado)} - {formatar_resultado(num2)} = {formatar_resultado(resultado2)}")
 
                 elif itens(escolha, "3", "/", "dividir"):
-                    num2 = float(input("Insira o segundo número: "))
-                    resultado = dividir(resultado, num2)
-                    print(f" {formatar_resultado(resultado)} / {formatar_resultado(num2)} = {formatar_resultado(resultado)}")
+                    num2 = ler_numero ("Insira o segundo número: ")
+                    resultado2 = dividir(resultado, num2)
+                    print(f" {formatar_resultado(resultado)} / {formatar_resultado(num2)} = {formatar_resultado(resultado2)}")
 
                 elif itens(escolha, "4", "*", "multiplicar"):
-                    num2 = float(input("Insira o segundo número: "))
-                    resultado = multiplicar(resultado, num2)
-                    print(f" {formatar_resultado(resultado)} * {formatar_resultado(num2)} = {formatar_resultado(resultado)}")
+                    num2 = ler_numero ("Insira o segundo número: ")
+                    resultado2 = multiplicar(resultado, num2)
+                    print(f" {formatar_resultado(resultado)} * {formatar_resultado(num2)} = {formatar_resultado(resultado2)}")
 
-            elif escolha == "9" or escolha.lower() == "sair" or opcao == "9" or opcao.lower() == "sair":
+            elif escolha == "0" or escolha.lower() == "sair":
                 finalizar()
                 break
-
             else:
                 print("Opção inválida. Tente novamente.")
+
 
 def main():
     calculos()
